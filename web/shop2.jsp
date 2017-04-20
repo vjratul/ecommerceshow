@@ -182,7 +182,11 @@
                         </div>  
                                                                                                   
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="pid" rel="nofollow" href="cart.jsp">Buy Product</a>
+                            
+                            <form action="cart.jsp" method="post">
+                                <input type="hidden" name="pid1" value="<%=pid%>"<%=pid%> />
+                                
+                            <input type="submit" value="Buy Product"></input>
                         </div> 
   
                     </div>

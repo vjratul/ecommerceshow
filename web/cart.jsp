@@ -4,6 +4,10 @@
     Author     : sumaiya
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +41,35 @@
     <![endif]-->
   </head>
   <body>
-      request.getAttr
+      <%String i=request.getParameter("pid1");%>
+      <%=i%>
+       <%!
+            Connection con;
+            Statement stm;
+            ResultSet res;
+            String impath;
+            String pname;
+            String price;
+            String pid;
+            %>
+              <%
+             
+                    String query="select * from products where productId='"+i+"'";
+              Class.forName("com.mysql.jdbc.Driver");
+             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ecom","root","");
+             stm=con.createStatement();
+             res=stm.executeQuery(query);
+             
+             %>
+             <%
+                 res.next();
+             impath=res.getString("imgpath");
+             pname=res.getString("productName");
+             price=res.getString("price");
+             pid=res.getString("productId");
+            
+             %>
+
    
     <div class="header-area">
         <div class="container">
@@ -113,7 +145,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
+                        <li><a href="shop2.jsp">Shop page</a></li>
                         <li><a href="single-product.html">Single product</a></li>
                         <li class="active"><a href="cart.html">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
@@ -218,7 +250,7 @@
                                             </td>
 
                                             <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
+                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/<%=impath%>"></a>
                                             </td>
 
                                             <td class="product-name">
@@ -226,7 +258,7 @@
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">£15.00</span> 
+                                                <span class="amount">BDT <%=price%></span> 
                                             </td>
 
                                             <td class="product-quantity">
@@ -238,7 +270,7 @@
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount">£15.00</span> 
+                                                <span class="amount">BDT<%=price%></span> 
                                             </td>
                                         </tr>
                                         <tr>
