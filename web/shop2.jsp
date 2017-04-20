@@ -184,9 +184,10 @@
                         <div class="product-option-shop">
                             
                             <form action="cart.jsp" method="post">
-                                <input type="hidden" name="pid1" value="<%=pid%>"<%=pid%> />
+                                <input type="hidden" name="pid1" value="<%=pid%>" />
                                 
                             <input type="submit" value="Buy Product"></input>
+                            </form>
                         </div> 
   
                     </div>
