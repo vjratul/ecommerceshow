@@ -42,7 +42,7 @@
             File file;
             int maxSize=5000*100;
             int maxFactSize=5000*5000;
-            String path="C:/Users/sumaiya/Documents/NetBeansProjects/ecommercefinalpro/web/img";
+            String path="C:/Users/sumaiya/Documents/NetBeansProjects/ecommerceshow/web/img";
         %>
          
         <%
