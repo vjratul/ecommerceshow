@@ -97,7 +97,7 @@
 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                       logged in: <%=session.getAttribute("username1")%><a href="cart.html"> <span class="cart-amunt"></span></a>
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                         <li><a href="shop2.jsp">All Products</a></li>
                         <li><a href="addproduct.jsp">Sell product</a></li>
                         <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="userprofile.jsp">Profile</a></li>
                         <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li>

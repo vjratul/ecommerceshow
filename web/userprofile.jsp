@@ -1,10 +1,13 @@
 <%-- 
-    Document   : login
-    Created on : Apr 22, 2017, 2:27:36 AM
+    Document   : checkoutL
+    Created on : Apr 9, 2017, 12:19:01 PM
     Author     : sumaiya
 --%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,6 +40,7 @@
     <![endif]-->
   </head>
   <body>
+     
    
     <div class="header-area">
         <div class="container">
@@ -85,13 +89,13 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.html">e<span>Electronics</span></a></h1>
+                        <h1><a href="index.jsp"><span>BUY N SELL DOT COM</span></a></h1>
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.html">Cart - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -115,7 +119,7 @@
                         <li><a href="shop.html">Shop page</a></li>
                         <li><a href="single-product.html">Single product</a></li>
                         <li><a href="cart.html">Cart</a></li>
-                        <li class=""><a href="">Checkout</a></li>
+                        <li class="active"><a href="checkout.html">Checkout</a></li>
                         <li><a href="#">Category</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li>
@@ -130,52 +134,54 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-center">
-                        
+                        <h2>user details</h2>
                     </div>
+                   
                 </div>
             </div>
-            
         </div>
-        
-    </div>
-    <br>
-    <br>
-  
+    </div
+    <%!
+    ResultSet res;
+    String username12;%>
+    <%
+     try{
+       Class.forName("com.mysql.jdbc.Driver");
+       Connection con =DriverManager.getConnection("jdbc:mysql://localhost:3306/ecom", "root", "");
+       
+       Statement st=con.createStatement();
+       username12=(String)session.getAttribute("username1");
+      
+      ResultSet res1=st.executeQuery("select * from user where username='"+username12+"'");
+      
+      if(res1.next()){
+          
+      }
+      out.print(res1);
+       con.close();
+       out.println("connection closed");
+       }
+       catch(Exception e){
+           out.print(e);
+       }
+      
+
+
+
+
+
+
+            %>
     
-    <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <h3>User Login</h3>
-                <div class="col-md-4">
-                   <form action="logincontrol.jsp" method="post">
-                    Enter User Name:<input type="text" name="name" placeholder="username"><br> 
-                    Enter password:<input type="password" name="password" placeholder="password"><br>
-                    <input type="submit" value="LogIn"/><br>
-                    </form>
-        
-                     <form action="signup.jsp" method="post">
-                        don't have username?<br>
-                    <input type="submit" value="SignUp"/><br>
-                    </form>
-                 
-
-
-                     </div>
-              
-
-                                        <div class="clear"></div>
-
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>                       
-                    </div>                    
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <pre>
+        <form action="userprofile.jsp" method="post">
+            <input type="submit" value="Logout"/><br>
+</form>
+    </pre>
+    <%session.invalidate();%>
+    
+   
 
 
    
@@ -196,5 +202,3 @@
     <script src="js/main.js"></script>
   </body>
 </html>
-
-
