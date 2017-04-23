@@ -113,7 +113,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                         logged in: <%=session.getAttribute("username1")%><a href="cart.html"> <span class="cart-amunt"></span></a>
                     </div>
                 </div>
             </div>

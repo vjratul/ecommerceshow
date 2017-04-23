@@ -95,7 +95,7 @@
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt"></span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                         logged in: <%=session.getAttribute("username1")%><a href="cart.html"> <span class="cart-amunt"></span></a>
                     </div>
                 </div>
             </div>
@@ -115,13 +115,11 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.jsp">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li class="active"><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
+                        <li class="active"><a href="index.jsp">Home</a></li>
+                        <li><a href="shop2.jsp">All Products</a></li>
+                        <li><a href="addproduct.jsp">Sell product</a></li>
+                        <li><a href="cart.jsp">Cart</a></li>
+                        <li><a href="userprofile.jsp">Profile</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>  
@@ -141,9 +139,20 @@
             </div>
         </div>
     </div
+    
+    </div>
+   
+ 
+    
+   
     <%!
     ResultSet res;
-    String username12;%>
+    String username12;
+    String fullname;
+    String address;
+    String phone;
+    String email;
+    %>
     <%
      try{
        Class.forName("com.mysql.jdbc.Driver");
@@ -153,13 +162,15 @@
        username12=(String)session.getAttribute("username1");
       
       ResultSet res1=st.executeQuery("select * from user where username='"+username12+"'");
-      
-      if(res1.next()){
-          
-      }
-      out.print(res1);
+     if(res1.next()){
+        fullname=res1.getString("fullName");
+        address=res1.getString("address");
+        phone=res1.getString("phoneNo");
+        email=res1.getString("email");
+     }
+     
        con.close();
-       out.println("connection closed");
+      
        }
        catch(Exception e){
            out.print(e);
@@ -172,18 +183,18 @@
 
 
             %>
-    
-    
-    <pre>
-        <form action="userprofile.jsp" method="post">
+            
+   <pre>
+    <h4>Full Name:<%=fullname%></h4>
+    <h4>Address:<%=address%></h4>
+    <h4>Phone:<%=phone%></h4>
+    <h4>Email Address:<%=email%></h4>
+   
+        <form action="logoutcontrol.jsp" method="post">
             <input type="submit" value="Logout"/><br>
 </form>
     </pre>
-    <%session.invalidate();%>
-    
    
-
-
    
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
