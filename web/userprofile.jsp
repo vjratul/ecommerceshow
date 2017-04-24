@@ -147,6 +147,7 @@
    
     <%!
     ResultSet res;
+    String username2;
     String username12;
     String fullname;
     String address;
@@ -167,6 +168,8 @@
         address=res1.getString("address");
         phone=res1.getString("phoneNo");
         email=res1.getString("email");
+        username2=res1.getString("userName");
+        
      }
      
        con.close();
@@ -183,13 +186,21 @@
 
 
             %>
-            
+            <%if(username12.equals(username2)){
+         
+     %>       
    <pre>
     <h4>Full Name:<%=fullname%></h4>
     <h4>Address:<%=address%></h4>
     <h4>Phone:<%=phone%></h4>
     <h4>Email Address:<%=email%></h4>
-   
+   <%}
+        else{%>
+        
+    <h4>Address:<%=address%></h4>
+    <h4>Phone:<%=phone%></h4>
+    <h4>Email Address:<%=email%></h4>
+        <%}%>
         <form action="logoutcontrol.jsp" method="post">
             <input type="submit" value="Logout"/><br>
 </form>

@@ -79,6 +79,7 @@
                 catch(Exception ex){
                 ex.printStackTrace();
                 }
+                response.sendRedirect("shop2.jsp");
                 %>
      
     
